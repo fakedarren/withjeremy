@@ -1,0 +1,110 @@
+<div class="content">
+
+    <div class="form">
+        <p><strong>{{ total }} people</strong> are supporting Jeremy Corbyn.<br />Are you?</p>
+        <button type="button" class="btn" data-fn="step1complete">I'm with Jeremy</button>
+        <ul class="links">
+            <li class="contact-link"><a href="mailto:i.am.withjeremy@gmail.com">Contact us</a></li>
+            <li class="privacy-link" data-fn="privacymsg">Privacy</li>
+            <li class="wall-link"><a href="/wall" data-fn="wallmsg">Wall</a></li>
+        </ul>
+    </div>
+
+    <script type="html/template" id="step-1">
+        <p><strong>{{ total }} people</strong> are supporting Jeremy Corbyn.<br />Are you?</p>
+        <button type="button" class="btn" data-fn="step1complete">I'm with Jeremy</button>
+        <ul class="links">
+            <li class="contact-link"><a href="mailto:i.am.withjeremy@gmail.com">Contact us</a></li>
+            <li class="privacy-link" data-fn="privacymsg">Privacy</li>
+            <li class="wall-link"><a href="/wall" data-fn="wallmsg">Wall</a></li>
+        </ul>
+    </script>
+
+    <script type="html/template" id="step-2">
+        <p>Do you want to add a selfie? You don't have to if you don't want to.</p>
+        <div class="upload-button">
+            <p class="label">Add your selfie</p§>
+            <input type="file" class="upload-field" data-fn="step2or3image" onChange="step2(this);" accept="image/*" />
+        </div>
+        <button type="button" class="white btn" data-fn="step2skip">No thanks</button>
+    </script>
+
+    <script type="html/template" id="step-3">
+        <p>How do you look?</p>
+        <div class="preview" data-fn="step3preview">
+            <div class="image"></div>
+        </div>
+        <button type="button" class="btn" data-fn="step3complete">Great!</button>
+        <div class="white upload-button">
+            <p class="label">Retake</p§>
+            <input type="file" class="upload-field" data-fn="step2or3image" onChange="step2(this);" accept="image/*" />
+        </div>
+        <button type="button" class="white btn" data-fn="step3skip">Skip</button>
+    </script>
+
+    <script type="html/template" id="step-4">
+        <p>Tell us more about yourself? All optional.</p>
+        <form>
+            <input type="hidden" name="image" />
+            <div class="field">
+                <label for="name">What's name name?</label>
+                <input type="text" name="name" id="name" placeholder="What's your name?" />
+            </div>
+            <div class="field">
+                <label for="job">What do you do?</label>
+                <input type="text" name="job" id="job" placeholder="What do you do?" />
+            </div>
+            <div class="field">
+                <label for="lives">Where do you live?</label>
+                <input type="text" name="lives" id="lives" placeholder="Where do you live?" />
+            </div>
+            <div class="field">
+                <label for="age">How old are you?</label>
+                <input type="number" name="age" id="age" placeholder="How old are you?" />
+            </div>
+            <div class="field">
+                <label for="email">What's your email?</label>
+                <input type="email" name="email" id="email" placeholder="What's your email?" />
+            </div>
+            <div class="radio field">
+                <p>Can we share this info with Jeremy?</p>
+                <input type="radio" name="share" id="share-1" checked value="1" />
+                <label class="yes" for="share-1">Yep!</label>
+                <input type="radio" name="share" id="share-2" value="0" />
+                <label class="no" for="share-2">Nope</label>
+            </div>
+        </form>
+        <button type="button" class="btn" data-fn="step4complete">I'm with Jeremy</button>
+    </script>
+
+    <script type="html/template" id="step-5">
+        <p><strong>Thanks!</strong> Spread the word! Tell your friends!</p>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://i.am.withjeremy.com" class="facebook btn">Share on Facebook</a>
+        <a href="https://twitter.com/intent/tweet?text=I%27m%20supporting%20Jeremy%20Corbyn%20https://i.am.withjeremy.com/" class="twitter btn">Share on Twitter</a>
+    </script>
+
+    <script type="html/template" id="wall">
+        <p>Hey! There are lots of pictures, so if you're on your phone, or don't have fast internet, it might be really slow, and use a lot of your data. Are you sure? It won't be all of them. That'd be silly.</p>
+        <button type="button" class="btn" data-fn="showwall">Yep, it's cool!</button>
+        <button type="button" class="white btn" data-fn="cancelwall">Will give it a miss!</button>
+    </script>
+
+    <script type="html/template" id="privacy">
+        <p>I made this for fun, because I want to help Jeremy win. I don't work for Jeremy, or Labour.</p>
+        <p>If Jeremy's team ask me to share your data, I'll share it (if you gave permission), and if you've given me your email, I'll tell you when I give it to them.</p>
+        <p>There is no tracking on this page, and never will be. I'll also never share your photos, but everyone can see them on <span data-fn="wallmsg">this page</span> or <span data-fn="wallmsg">wall</span>.</p>
+        <p>You can email me using the 'contact' button if you want anything deleted.</p>
+        <button type="button" class="btn" data-fn="privacyok">OK</button>
+    </script>
+
+</div>
+
+<div class="background">
+    {{#each pledges}}
+        <div class="face" tabindex="0">
+            <div class="image" style="transform: rotate({{ this.rotation }}deg); background-image: {{ this.pledge.image }};">
+            </div>
+            <div class="details"></div>
+        </div>
+    {{/each}}
+</div>

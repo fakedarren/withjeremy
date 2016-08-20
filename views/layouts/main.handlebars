@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html{{#if resizable}} class="no-transform"{{/if}}>
+<head>
+    <meta charset="utf-8" />
+    <title>I'm voting for Jeremy Corbyn</title>
+    <!--
+        Hey! I see you're viewing source!
+        Want to help make cool things for Jeremy? Email us? i.am.withjeremy@gmail.com
+    -->
+    {{#if resizable}}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{else}}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    {{/if}}
+    <meta property="og:title" content="I'm With Jeremy" />
+    <meta property="og:description" content="Show your support. I'm with Jeremy." />
+    <meta property="og:url" content="https://i.am.withjeremy.com" />
+    <meta property="og:image" content="https://i.am.withjeremy.com/img/share.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="I'm with Jeremy" />
+    <meta name="twitter:description" content="Show your support. I'm with Jeremy." />
+    <meta name="twitter:image:src" content="https://i.am.withjeremy.com/img/share.jpg?2" />
+    <meta name="twitter:image:width" content="1000" />
+    <meta name="twitter:image:height" content="541" />
+    <script type="text/javascript" src="//use.typekit.com/vzm8yde.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link href="/css/main.min.css" rel="stylesheet" />
+</head>
+<body{{#if resizable}}{{else}} class="page{{/if}}">
+    {{{body}}}
+</body>
+<script src="/js/built.min.js"></script>
+</html>

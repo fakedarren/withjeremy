@@ -1,0 +1,34 @@
+<style>
+    html, body {
+        overflow: auto;
+    }
+    ul, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .wall-face {
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        float: left;
+        width: 20%;
+    }
+    .wall-face div {
+        padding-bottom: 100%;
+    }
+
+    @media (min-width: 1024px) {
+        .wall-face {
+            width: 10%;
+        }
+    }
+</style>
+
+<ul>
+{{#each pledges}}
+    <li class="wall-face" style="background-image: {{ this.image }}; transform: rotate({{ this.rotation }}deg);" tabindex="0">
+        <div></div>
+    </li>
+{{/each}}
+</ul>

@@ -1,0 +1,99 @@
+<style>
+    html, body {
+        background: none;
+        overflow: auto;
+    }
+    .moderation {
+        list-style: none;
+        margin-bottom: 40px;
+        max-width: 700px;
+    }
+    .moderation:after {
+        clear: both;
+        content: ' ';
+        display: table;
+    }
+    .moderation .image {
+        background-color: #222;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150px;
+        float: left;
+        margin-right: 20px;
+        width: 150px;
+    }
+    .moderation .details {
+        float: left;
+    }
+    .moderation dt {
+        clear: left;
+        float: left;
+        font-weight: bold;
+    }
+    .moderation dd {
+        float: left;
+    }
+    .moderation .actions {
+        float: right;
+    }
+    .nowt {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+</style>
+
+{{#if pledges.length}}
+    <ul>
+    {{#each pledges}}
+        <li class="moderation" tabindex="-1">
+            <div class="image" style="background-image: {{ this.image }};"></div>
+            <dl class="details">
+                <dt>Name: </dt><dd>{{ this.name }}</dd>
+                <dt>Job: </dt><dd>{{ this.job }}</dd>
+                <dt>Lives: </dt><dd>{{ this.lives }}</dd>
+                <dt>Age: </dt><dd>{{ this.age }}</dd>
+                <dt>Email: </dt><dd>{{ this.email }}</dd>
+                <dt>Share? </dt><dd>{{#if this.share }}yes{{else}}no{{/if}}</dd>
+            </dl>
+            <div class="actions">
+                <button type="button" data-type="approve" data-id="{{_id}}">Approve</button>
+                <button type="button" data-type="delete" data-id="{{_id}}">Delete</button>
+            </div>
+        </li>
+    {{/each}}
+    </ul>
+{{else}}
+    <h2 class="nowt">Nothing to moderate! {{ time }}</h2>
+    <script>
+        window.setTimeout(function(){
+            window.location = window.location;
+        }, 30000);
+    </script>
+{{/if}}
+
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<script>
+    $('[data-type]').on('click', function(evt){
+        var id = $(this).data('id');
+        var self = $(this);
+        var type = $(this).data('type');
+
+        $.post('/oh-yes-i-did-moderate', {
+            id: id,
+            type: type
+        }, function(ok){
+            self.closest('.moderation').fadeOut(1000, function(){
+                $(this).remove();
+
+                if ($('.moderation').length === 0){
+                    window.setTimeout(function(){
+                        window.location = window.location;
+                    }, 5000);
+                }
+            });
+        });
+    });
+</script>
